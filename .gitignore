@@ -6,3 +6,11 @@
 /pkg/
 /spec/reports/
 /tmp/
+/.idea/dbnavigator.xml
+/.idea/google_wallet.iml
+/google_wallet-0.1.0.gem
+/key.json
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/vcs.xml
+/.idea/workspace.xml
