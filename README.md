@@ -85,11 +85,14 @@ ticket = GoogleWallet::Resources::EventTicket::Object.new(attributes: ticket_att
 
 # Push Object to Google Wallet API
 ticket.push
-ticket.sign(push_resource: false)
+jwt = ticket.sign(push_resource: false)
 
 # or
 
-ticket.sign # default, push_resource: true
+jwt = ticket.sign # default, push_resource: true
+
+"https://pay.google.com/gp/v/save/#{jwt}"
+
 ```
 
 ## Development
