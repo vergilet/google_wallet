@@ -84,10 +84,12 @@ ticket_attributes = {
 ticket = GoogleWallet::Resources::EventTicket::Object.new(attributes: ticket_attributes)
 
 # Push Object to Google Wallet API
+# separated push and sign
+
 ticket.push
 jwt = ticket.sign(push_resource: false)
 
-# or
+# or combined - just use sign
 
 jwt = ticket.sign # default, push_resource: true
 
@@ -103,7 +105,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/google_wallet.
+Bug reports and pull requests are welcome on GitHub at https://github.com/vergilet/google_wallet.
 
 ## License
 
