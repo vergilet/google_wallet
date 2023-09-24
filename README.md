@@ -84,10 +84,12 @@ ticket_attributes = {
 ticket = GoogleWallet::Resources::EventTicket::Object.new(attributes: ticket_attributes)
 
 # Push Object to Google Wallet API
+# separated push and sign
+
 ticket.push
 ticket.sign(push_resource: false)
 
-# or
+# or combined - just use sign
 
 ticket.sign # default, push_resource: true
 ```
