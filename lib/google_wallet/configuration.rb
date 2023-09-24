@@ -4,13 +4,18 @@ require 'json'
 
 module GoogleWallet
   class Configuration
-    attr_accessor :json_credentials, :issuer_id, :api_endpoint, :debug_mode
+    attr_accessor :json_credentials, :issuer_id, :api_endpoint, :debug_mode, :logger
 
     def initialize
+      @api_endpoint = 'https://walletobjects.googleapis.com/walletobjects/v1'
       @json_credentials = nil
       @issuer_id = nil
-      @api_endpoint = 'https://api.example.com'
       @debug_mode = false
+      @logger = Logger.new(STDOUT)
+    end
+
+    def self.logger
+      @logger
     end
 
     def load_credentials_from_file(file_path)

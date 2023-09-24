@@ -8,9 +8,9 @@ require_relative "google_wallet/resources/base"
 require_relative "google_wallet/resources/event_ticket/class"
 require_relative "google_wallet/resources/event_ticket/object"
 
-require_relative "google_wallet/operations/sign_event_ticket_objects"
-require_relative "google_wallet/operations/register_event_ticket_class"
-require_relative "google_wallet/operations/register_event_ticket_object"
+require_relative "google_wallet/operations/sign_objects"
+require_relative "google_wallet/operations/event_ticket/push_class"
+require_relative "google_wallet/operations/event_ticket/push_object"
 
 module GoogleWallet
   class Error < StandardError; end
@@ -22,5 +22,13 @@ module GoogleWallet
   def self.configure
     self.configuration ||= Configuration.new
     yield(configuration)
+  end
+
+  def self.logger
+    configuration.logger
+  end
+
+  def self.debug_mode?
+    configuration.debug_mode
   end
 end

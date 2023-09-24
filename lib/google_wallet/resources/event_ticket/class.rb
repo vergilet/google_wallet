@@ -23,17 +23,29 @@ module GoogleWallet
         #   start_date_time: '2023-08-27T22:30',
         #   end_date_time: '2023-08-28T01:30',
         #   hex_background_color: '#ff0077',
-        #   callback_url: 'https://arrangement.ticketco.events/gpass_callback'
+        #   callback_url: 'https://example.com/gpass_callback'
         # }
 
 
         def initialize(attributes: {}, options: {})
           super
+          validate_fields( %w[class_identifier event_name issuer_name])
           @id = "#{GoogleWallet.configuration.issuer_id}.#{@class_identifier}"
+        end
 
-          [class_identifier, event_name, issuer_name].each do |field|
-            raise "#{field} is required" if blank?(field)
-          end
+        def push
+          access_token = GoogleWallet::Authentication.new.access_token
+          GoogleWallet::Operations::EventTicket::PushClass.new(resource: self, access_token: access_token).call
+        end
+
+        def sign(push_resource: true)
+          raise "Class cannot be signed without Object,
+                use GoogleWallet::Operations::SignObjects.new(...)
+                to create/modify simultaneously classes and objects by following jwt link"
+        end
+
+        def payload_key
+          "#{payload_key_logic}Classes"
         end
 
         private

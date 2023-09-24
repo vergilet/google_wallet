@@ -30,17 +30,34 @@ module GoogleWallet
         #   hex_background_color: '#45ffaa'
         # }
 
-
-
         def initialize(attributes: {}, options: {})
           super
 
+          validate_fields( %w[object_identifier class_identifier])
           @id = "#{GoogleWallet.configuration.issuer_id}.#{@object_identifier}"
           @class_id = "#{GoogleWallet.configuration.issuer_id}.#{@class_identifier}"
+        end
 
-          [object_identifier, class_identifier].each do |field|
-            raise "#{field} is required" if blank?(field)
-          end
+        def push
+          access_token = GoogleWallet::Authentication.new.access_token
+          GoogleWallet::Operations::EventTicket::PushObject.new(resource: self, access_token: access_token).call
+        end
+
+        def sign(push_resource: true)
+          sign_operation =
+            if push_resource
+              push
+              GoogleWallet::Operations::SignObjects.new(resource_ids: [id], objects_type: self.payload_key)
+            else
+              GoogleWallet::Operations::SignObjects.new(resources: [itself])
+            end
+
+          sign_operation.call
+          sign_operation.jwt
+        end
+
+        def payload_key
+          "#{payload_key_logic}Objects"
         end
 
         private
