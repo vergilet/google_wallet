@@ -12,16 +12,21 @@
 
 
 # GoogleWallet
-💎 Unofficial Ruby Gem for Google Wallet API.
-
+Unofficial Ruby Gem for [Google Wallet API](https://developers.google.com/wallet).
 
 ## Installation
 
-Install the gem and add to the application's Gemfile by executing:
+Add this line to your application's Gemfile:
 
-    $ bundle add google_wallet
+```ruby
+gem 'google_wallet'
+```
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+And then execute:
+
+    $ bundle install
+
+Or install it yourself as:
 
     $ gem install google_wallet
 
