@@ -14,6 +14,11 @@
 # GoogleWallet
 Unofficial Ruby Gem for [Google Wallet API](https://developers.google.com/wallet).
 
+## Prerequisites
+Before you use the Google Wallet API for an integration, complete first four steps from [this guide](https://developers.google.com/wallet/tickets/events/web/prerequisites).
+
+*On 3rd step you are going to obtain **key.json**, which will be needed for the gem initialization.*
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -104,13 +109,12 @@ ticket_attributes = {
 ticket = GoogleWallet::Resources::EventTicket::Object.new(attributes: ticket_attributes)
 
 # Push Object to Google Wallet API
-# separated push and sign
 
+# separated push and sign
 ticket.push
 jwt = ticket.sign(push_resource: false)
 
 # or combined - just use sign
-
 jwt = ticket.sign # default, push_resource: true
 
 "https://pay.google.com/gp/v/save/#{jwt}"
