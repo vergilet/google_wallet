@@ -1,12 +1,37 @@
+<p align="right">
+    <a href="https://github.com/vergilet/google_wallet"><img align="" src="https://user-images.githubusercontent.com/2478436/51829223-cb05d600-22f5-11e9-9245-bc6e82dcf028.png" width="56" height="56" /></a>
+<a href="https://rubygems.org/gems/google_wallet"><img align="right" src="https://user-images.githubusercontent.com/2478436/51829691-c55cc000-22f6-11e9-99a5-42f88a8f2a55.png" width="56" height="56" /></a>
+</p>
+
+
+<p align="center">
+    <a href="https://rubygems.org/gems/repost">
+  <img width="460" src="https://github.com/vergilet/google_wallet/assets/2478436/5f9c5925-129a-401e-bd46-82e6ae2b2430"></a>
+</p>
+
+
+
 # GoogleWallet
+Unofficial Ruby Gem for [Google Wallet API](https://developers.google.com/wallet).
+
+## Prerequisites
+Before you use the Google Wallet API for an integration, complete first four steps from [this guide](https://developers.google.com/wallet/tickets/events/web/prerequisites).
+
+*On 3rd step you are going to obtain **key.json**, which will be needed for the gem initialization.*
 
 ## Installation
 
-Install the gem and add to the application's Gemfile by executing:
+Add this line to your application's Gemfile:
 
-    $ bundle add google_wallet
+```ruby
+gem 'google_wallet'
+```
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+And then execute:
+
+    $ bundle install
+
+Or install it yourself as:
 
     $ gem install google_wallet
 
@@ -84,18 +109,25 @@ ticket_attributes = {
 ticket = GoogleWallet::Resources::EventTicket::Object.new(attributes: ticket_attributes)
 
 # Push Object to Google Wallet API
-# separated push and sign
 
+# separated push and sign
 ticket.push
 jwt = ticket.sign(push_resource: false)
 
 # or combined - just use sign
-
 jwt = ticket.sign # default, push_resource: true
 
 "https://pay.google.com/gp/v/save/#{jwt}"
 
 ```
+
+### Result
+
+<p align="center">
+    <a href="https://rubygems.org/gems/repost">
+  <img src="https://github.com/vergilet/google_wallet/assets/2478436/df8f6ec9-ec45-4226-a0cf-65dc6f69f9b5"></a>
+</p>
+
 
 ## Development
 
