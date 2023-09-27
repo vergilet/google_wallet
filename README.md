@@ -17,7 +17,9 @@ Unofficial Ruby Gem for [Google Wallet API](https://developers.google.com/wallet
 ## Prerequisites
 Before you use the Google Wallet API for an integration, complete first four steps from [this guide](https://developers.google.com/wallet/tickets/events/web/prerequisites).
 
-*The 1st step will provide you with **IssuerID**=33880000000XXXXXXXX and*
+
+
+*The 1st step will provide you with **IssuerID**=33880000000XXXXXXXX and* 
 
 *on the 3rd step you are going to obtain **key.json**, those are needed for the gem initialization.*
 
