@@ -128,8 +128,7 @@ jwt = ticket.sign # default, push_resource: true
 ### Result
 
 <p align="center">
-    <a href="https://rubygems.org/gems/repost">
-  <img src="https://github.com/vergilet/google_wallet/assets/2478436/df8f6ec9-ec45-4226-a0cf-65dc6f69f9b5"></a>
+  <img src="https://github.com/vergilet/google_wallet/assets/2478436/394dc017-c6f8-43d1-ad7b-f2139d643aec"></a>
 </p>
 
 
