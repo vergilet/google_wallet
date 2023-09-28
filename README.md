@@ -90,7 +90,7 @@ event.push
 ticket_attributes = {
   # required fields
   object_identifier: 'fd9b637f-0381-42ad-9161-b4d887d79d9f',
-  class_identifier: 'Event-12345',
+  class_identifier: 'Event-123456',
 
   # other fields
   grouping_id: 'order-12345',
