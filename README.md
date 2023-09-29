@@ -121,6 +121,8 @@ jwt = ticket.sign(push_resource: false)
 # or combined - just use sign
 jwt = ticket.sign # default, push_resource: true
 
+# visit output link via authenticated browser
+# or send it to you android device with Wallet app.
 "https://pay.google.com/gp/v/save/#{jwt}"
 
 ```
