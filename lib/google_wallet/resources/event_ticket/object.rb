@@ -22,7 +22,7 @@ module GoogleWallet
         #   gate: 'G3, G4',
         #   ticket_holder_name: 'Yaro Developer',
         #   qr_code_value: '12345678',
-        #   ref_number: 'cdeqw',
+        #   ticket_number: 'cdeqw',
         #   valid_time_start: '2023-09-27T22:30',
         #   valid_time_end: '2023-09-28T02:00',
         #   micros: 82_000_000,
