@@ -114,18 +114,28 @@ ticket = GoogleWallet::Resources::EventTicket::Object.new(attributes: ticket_att
 
 # Push Object to Google Wallet API
 
-# separated push and sign
+# Option 1 (Recommended):
+# Separated push and sign
 ticket.push
 jwt = ticket.sign(push_resource: false)
 
-# or combined - just use sign
-jwt = ticket.sign # default, push_resource: true
+# Option 2:
+# Combined - just use sign
+jwt = ticket.sign # default is push_resource: true
 
 # visit output link via authenticated browser
 # or send it to you android device with Wallet app.
 "https://pay.google.com/gp/v/save/#{jwt}"
 
 ```
+
+#### Separation of Ticket Push and JWT Signing
+The gem offers a distinct advantage when pushing tickets separately from the signing phase. If tickets are pushed individually, the subsequent signing method utilizes only the ticket identifiers during the JWT signing process, rather than the entire ticket objects.
+
+*Advantages of Using Ticket Identifiers:*
+
+*By employing ticket identifiers in the signing process instead of the full ticket objects, it significantly reduces the length of the final link generated. This streamlined approach allows for a more efficient and concise link that can be easily sent to the user.*
+
 
 ### Result
 
