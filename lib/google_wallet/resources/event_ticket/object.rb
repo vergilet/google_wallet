@@ -6,7 +6,7 @@ module GoogleWallet
       class Object < Base
 
         attr_reader :object_identifier, :class_identifier, :seat, :row, :section, :gate,
-                    :ticket_type, :grouping_id, :qr_code_value, :ticket_holder_name,
+                    :ticket_type, :grouping_id, :qr_code_value, :qr_alternate_text, :ticket_holder_name,
                     :valid_time_start, :valid_time_end, :micros, :currency_code,
                     :hex_background_color, :ticket_number, :id, :class_id, :options
 
@@ -22,6 +22,7 @@ module GoogleWallet
         #   gate: 'G3, G4',
         #   ticket_holder_name: 'Yaro Developer',
         #   qr_code_value: '12345678',
+        #   qr_alternate_text: 'visible qr value'
         #   ticket_number: 'cdeqw',
         #   valid_time_start: '2023-09-27T22:30',
         #   valid_time_end: '2023-09-28T02:00',
@@ -71,7 +72,10 @@ module GoogleWallet
 
           template[:ticketType] = { defaultValue: { language: "en-us", value: ticket_type } } if present?(ticket_type)
           template[:groupingInfo] = { groupingId: grouping_id } if present?(grouping_id)
-          template[:barcode] = { type: "QR_CODE", value: qr_code_value, alternateText: qr_code_value } if present?(qr_code_value)
+          if present?(qr_code_value)
+            alternate_text = qr_alternate_text || qr_code_value
+            template[:barcode] = { type: "QR_CODE", value: qr_code_value, alternateText: alternate_text }
+          end
           template[:faceValue] = { micros: micros, currencyCode: currency_code } if present?(micros) && present?(currency_code)
 
           template[:seatInfo] = {}
