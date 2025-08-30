@@ -115,13 +115,13 @@ ticket = GoogleWallet::Resources::EventTicket::Object.new(attributes: ticket_att
 # Push Object to Google Wallet API
 
 # Option 1 (Recommended):
+# Combined - just use sign
+jwt = ticket.sign # default is push_resource: true
+
+# Option 2:
 # Separated push and sign
 ticket.push
 jwt = ticket.sign(push_resource: false)
-
-# Option 2:
-# Combined - just use sign
-jwt = ticket.sign # default is push_resource: true
 
 # visit output link via authenticated browser
 # or send it to you android device with Wallet app.
